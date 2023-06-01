@@ -1,9 +1,10 @@
-function Home() {
+import Layout from "../../Components/Layout"
 
+function Home() {
   return (
-    <h1 className="bg-amber-500">
-      Home!
-    </h1>
+      <Layout>
+          Home
+      </Layout>
   )
 }
 

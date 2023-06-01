@@ -1,9 +1,11 @@
+import Layout from "../../Components/Layout"
+
 function MyAccount() {
 
-    return (
-      <h1 className="bg-amber-500">
+    return (      
+      <Layout>
         MyAccount!
-      </h1>
+      </Layout>
     )
   }
   

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react"
 import { ShoppingCartContext } from "../../Context"
-
+import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 
 let menuLeft = [
     {
@@ -67,15 +67,13 @@ const Navbar = () => {
     return (
         <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-5 text-sm font-light">
             <ul className="flex items-center gap-3">
-                <li className="font-semibold text-lg">
-                <NavLink 
-                        to='/'
-                        >
+                <li className="font-semibold text-lg" key="/">
+                <NavLink to='/'>
                         Shopi
                     </NavLink>
                 </li>
                 {menuLeft.map(link => (
-                <li className={link.className}>
+                <li className={link.className} key={link.text}>
                     <NavLink 
                         to={link.to}
                         className={({isActive})=> isActive ? activeStyle : undefined }
@@ -87,7 +85,7 @@ const Navbar = () => {
             </ul>
             <ul className="flex items-center gap-3">
                 {menuRight.map(link => (
-                <li className={link.className}>
+                <li className={link.className} key={link.text}>
                     <NavLink 
                         to={link.to}
                         className={({isActive})=> isActive ? activeStyle : undefined }
@@ -96,13 +94,9 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 ))}
-                <li >
-                    <NavLink 
-                        to='/shoppcar'
-                        className={({isActive})=> isActive ? activeStyle : undefined }
-                        >
-                        🛒 ({context.count})
-                    </NavLink>
+                <li className='flex items-center'>
+                <ShoppingBagIcon className='h-6 w-6 text-black'></ShoppingBagIcon>
+                <div>({context.count})</div>
                 </li>
             </ul>
         </nav>

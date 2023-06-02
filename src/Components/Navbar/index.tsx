@@ -1,4 +1,7 @@
 import { NavLink } from "react-router-dom";
+import { useContext } from "react"
+import { ShoppingCartContext } from "../../Context"
+
 
 let menuLeft = [
     {
@@ -54,15 +57,13 @@ let menuRight = [
         text: 'Sign in',
         className: ''
     },
-    {
-        to: '/shoppcar',
-        text: '🛒 (0)',
-        className: ''
-    },
+
 ]
 
 const Navbar = () => {
+    const context = useContext(ShoppingCartContext)
     const activeStyle = 'underline underline-offset-4'
+
     return (
         <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-5 text-sm font-light">
             <ul className="flex items-center gap-3">
@@ -95,6 +96,14 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 ))}
+                <li >
+                    <NavLink 
+                        to='/shoppcar'
+                        className={({isActive})=> isActive ? activeStyle : undefined }
+                        >
+                        🛒 ({context.count})
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     ) 

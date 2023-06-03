@@ -12,6 +12,11 @@ export const ShoppingCartProvider = ( {children}: any ) => {
     const openProductDetail = () => setIsProductDetailOpen(true)
     const closeProductDetail = () => setIsProductDetailOpen(false)
 
+    // Checout Side Menu • Open/Close 
+    const [ isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen ] = useState(false)
+    const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
+    const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
+
     // Product Detail • Show product
     const [ productToShow, setproductToShow] = useState({
                                                 title: "",
@@ -19,6 +24,9 @@ export const ShoppingCartProvider = ( {children}: any ) => {
                                                 description: "",
                                                 images: [],
                                             })
+    
+    // Shopping Cart • Add products to cart 
+    const [ cartProducts, setCartProducts ] = useState([])
 
     return (
     <ShoppingCartContext.Provider
@@ -29,7 +37,14 @@ export const ShoppingCartProvider = ( {children}: any ) => {
             openProductDetail,
             closeProductDetail,
             productToShow,
-            setproductToShow
+            setproductToShow,
+            cartProducts,
+            setCartProducts,
+            isCheckoutSideMenuOpen,
+            setIsCheckoutSideMenuOpen,
+            openCheckoutSideMenu,
+            closeCheckoutSideMenu
+
             }}>
             {children}
     </ShoppingCartContext.Provider>

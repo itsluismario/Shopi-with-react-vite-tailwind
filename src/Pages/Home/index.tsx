@@ -3,6 +3,7 @@ import Layout from "../../Components/Layout"
 import Card from "../../Components/Card"
 import ProductDetail from "../../Components/ProductDetail"
 import { apiUrl } from "../../API"
+import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 
 function Home() {
 

@@ -4,6 +4,7 @@ const OrderCard = (props) => {
 
   const { title, imagesUrl, price } = props
 
+
   return (
     <div className="flex justify-between items-center mb-2">
       <div className="flex items-center gap-2">

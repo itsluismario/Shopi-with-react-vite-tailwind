@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { ShoppingCartContext } from "../../Context"
-import { PlusIcon } from '@heroicons/react/24/solid'
+import { PlusIcon, CheckIcon } from '@heroicons/react/24/solid'
 
 const Card = ( {data} ) => {
     
@@ -20,6 +20,28 @@ const Card = ( {data} ) => {
         context.openCheckoutSideMenu()
     }
 
+    const renderIcon = (productID) => {
+        const IsInCart = context.cartProducts.filter(product => product.id === productID).length > 0
+        if (IsInCart) {
+            return (
+                <div 
+                    className="absolute top-0 right-0 flex justify-center items-center bg-emerald-500  w-6 h-6 rounded-full m-2 p-1">
+                    <CheckIcon className="h-6 w-6 text-white cursor-pointer" />
+                </div>
+            )
+
+        } else {
+            return (
+                <div 
+                    className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1" 
+                    onClick={(event) => addProductsToCart(event, data)}>
+                    <PlusIcon  className="h-6 w-6 text-black cursor-pointer" />
+                </div>
+            )
+
+        }
+    }
+
     return (
         <div 
             className="bg-white cursor-pointer w-56 h-60 rounded-lg"
@@ -30,11 +52,7 @@ const Card = ( {data} ) => {
                     className="w-full h-full object-cover rounded-lg" 
                     src={data.images[0]} 
                     alt={data.title}/>
-                <div 
-                    className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1" 
-                    onClick={(event) => addProductsToCart(event, data)}>
-                    <PlusIcon  className="h-6 w-6 text-black cursor-pointer" />
-                </div>
+                    {renderIcon(data.id)}
             </figure>
             <p className="flex justify-between">
                 <span className="text-sm font-light">{data.title}</span>

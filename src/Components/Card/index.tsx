@@ -12,34 +12,24 @@ const Card = ( {data} ) => {
         context.closeCheckoutSideMenu()
     } 
 
+    //Agrega un producto al carrito, y si ya existe aumenta la cantidad y suma los productos
     const addProductsToCart = (event, productData) => {
         event.stopPropagation()
         context.setCount(context.count + 1)
-        context.setCartProducts([...context.cartProducts, productData])
+        
+        const productIndex = context.cartProducts.findIndex(product => product.id === productData.id)
+        
+        let newCart = []
+        if (productIndex >= 0) {
+        newCart = [...context.cartProducts]
+        newCart[productIndex].quantity++
+        newCart[productIndex].price = productData.price + newCart[productIndex].price
+        } else {
+        newCart = [...context.cartProducts, { ...productData, quantity: 1 }]
+        }
+        context.setCartProducts(newCart)
         context.closeProductDetail()
         context.openCheckoutSideMenu()
-    }
-
-    const renderIcon = (productID) => {
-        const IsInCart = context.cartProducts.filter(product => product.id === productID).length > 0
-        if (IsInCart) {
-            return (
-                <div 
-                    className="absolute top-0 right-0 flex justify-center items-center bg-emerald-500  w-6 h-6 rounded-full m-2 p-1">
-                    <CheckIcon className="h-6 w-6 text-white cursor-pointer" />
-                </div>
-            )
-
-        } else {
-            return (
-                <div 
-                    className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1" 
-                    onClick={(event) => addProductsToCart(event, data)}>
-                    <PlusIcon  className="h-6 w-6 text-black cursor-pointer" />
-                </div>
-            )
-
-        }
     }
 
     return (
@@ -52,7 +42,11 @@ const Card = ( {data} ) => {
                     className="w-full h-full object-cover rounded-lg" 
                     src={data.images[0]} 
                     alt={data.title}/>
-                    {renderIcon(data.id)}
+                    <div 
+                    className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1" 
+                    onClick={(event) => addProductsToCart(event, data)}>
+                    <PlusIcon  className="h-6 w-6 text-black cursor-pointer" />
+                </div>
             </figure>
             <p className="flex justify-between">
                 <span className="text-sm font-light">{data.title}</span>

@@ -35,8 +35,6 @@ export const ShoppingCartProvider = ( {children}: any ) => {
         setCount(newItemsInCart)
     } 
 
-    // Shoppinh Cart • Get the total cost 
-    const totalCost = cartProducts.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     return (
     <ShoppingCartContext.Provider
@@ -54,8 +52,7 @@ export const ShoppingCartProvider = ( {children}: any ) => {
             setIsCheckoutSideMenuOpen,
             openCheckoutSideMenu,
             closeCheckoutSideMenu,
-            updateCart,
-            totalCost
+            updateCart
             }}>
             {children}
     </ShoppingCartContext.Provider>

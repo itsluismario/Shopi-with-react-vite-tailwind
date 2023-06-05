@@ -60,10 +60,12 @@ let menuRight = [
 
 ]
 
+
 const Navbar = () => {
     const context = useContext(ShoppingCartContext)
     const activeStyle = 'underline underline-offset-4'
-
+    const totalQuantity = context.cartProducts.reduce((acc, item) => acc + item.quantity, 0)
+    
     return (
         <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-5 text-sm font-light">
             <ul className="flex items-center gap-3">
@@ -95,8 +97,8 @@ const Navbar = () => {
                 </li>
                 ))}
                 <li className='flex items-center'>
-                <ShoppingBagIcon className='h-6 w-6 text-black'></ShoppingBagIcon>
-                <div>({context.count})</div>
+                <ShoppingBagIcon className='h-6 w-6 text-black'></ShoppingBagIcon>                
+                <div>({totalQuantity})</div>
                 </li>
             </ul>
         </nav>

@@ -28,6 +28,16 @@ export const ShoppingCartProvider = ( {children}: any ) => {
     // Shopping Cart • Add products to cart 
     const [ cartProducts, setCartProducts ] = useState([])
 
+    // Shopping Cart •  Upate/Remove number of item
+    const updateCart = () => {
+        let quantityItemsInCart = 0 
+        const newItemsInCart = cartProducts.map(product => quantityItemsInCart = quantityItemsInCart + product.quantity)
+        setCount(newItemsInCart)
+    } 
+
+    // Shoppinh Cart • Get the total cost 
+    const totalCost = cartProducts.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
     return (
     <ShoppingCartContext.Provider
         value={{
@@ -43,8 +53,9 @@ export const ShoppingCartProvider = ( {children}: any ) => {
             isCheckoutSideMenuOpen,
             setIsCheckoutSideMenuOpen,
             openCheckoutSideMenu,
-            closeCheckoutSideMenu
-
+            closeCheckoutSideMenu,
+            updateCart,
+            totalCost
             }}>
             {children}
     </ShoppingCartContext.Provider>

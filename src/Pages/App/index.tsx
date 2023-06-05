@@ -1,4 +1,4 @@
-import { BrowserRouter, useRoutes } from 'react-router-dom'
+import { useRoutes } from 'react-router-dom'
 import Home from '../Home'
 import MyAccount from '../MyAccount'
 import MyOrder from '../MyOrder'
@@ -16,6 +16,7 @@ const AppRoutes = () => {
     { path: '/my-account', element: <MyAccount/> },
     { path: '/my-order', element: <MyOrder/> },
     { path: '/my-orders', element: <MyOrders/> },
+    { path: '/my-orders/last', element: <MyOrder/> },
     { path: '/sign-in', element: <Signin/> },
     { path: '/*', element: <NotFound/> },
   ])
@@ -25,10 +26,8 @@ const AppRoutes = () => {
 const App = () => {
   return (
     <ShoppingCartProvider>
-      <BrowserRouter>
-        <Navbar/>
         <AppRoutes/>
-      </BrowserRouter>
+        <Navbar/>
       <CheckoutSideMenu />
     </ShoppingCartProvider>
   )

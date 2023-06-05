@@ -43,7 +43,7 @@ const Card = ( {data} ) => {
                     src={data.images[0]} 
                     alt={data.title}/>
             </figure>
-            <p className="flex justify-between">
+            <p className="flex justify-between items-center">
                 <span className="text-sm font-light">{data.title}</span>
                 <span className="text-base font-medium">${data.price}</span>
             </p>

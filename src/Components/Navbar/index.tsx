@@ -67,7 +67,7 @@ const Navbar = () => {
     const totalQuantity = context.cartProducts.reduce((acc, item) => acc + item.quantity, 0)
     
     return (
-        <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-5 text-sm font-light">
+        <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-5 text-sm font-light bg-white">
             <ul className="flex items-center gap-3">
                 <li className="font-semibold text-lg" key="/">
                 <NavLink to='/'>

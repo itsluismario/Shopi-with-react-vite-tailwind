@@ -63,7 +63,6 @@ let menuRight = [
 
 
 const Navbar = () => {
-    const context = useContext(ShoppingCartContext)
     const activeStyle = 'underline underline-offset-4'
     const totalQuantity = totalQtyByCart()
     

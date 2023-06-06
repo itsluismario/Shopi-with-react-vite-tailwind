@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import { apiUrl } from "../API"
 
 export const ShoppingCartContext = createContext()
 
@@ -31,6 +32,19 @@ export const ShoppingCartProvider = ( {children}: any ) => {
     // Shopping Cart • Order
     const [ order, setOrder ] = useState([])
 
+    // Get products
+    const [items, setItems] = useState(null)
+        
+    // Get products by title
+    const [searchByTitle, setSearchByTitle] = useState(null)
+
+    useEffect(() => {
+        fetch(`${apiUrl}/products`)
+        .then(response => response.json())
+        .then(data => setItems(data)
+        )
+    }, [])
+
     return (
     <ShoppingCartContext.Provider
         value={{
@@ -48,7 +62,11 @@ export const ShoppingCartProvider = ( {children}: any ) => {
             openCheckoutSideMenu,
             closeCheckoutSideMenu,
             order,
-            setOrder
+            setOrder,
+            items,
+            setItems,
+            searchByTitle,
+            setSearchByTitle
             }}>
             {children}
     </ShoppingCartContext.Provider>

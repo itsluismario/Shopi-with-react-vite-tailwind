@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react"
 import { ShoppingCartContext } from "../../Context"
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
+import { totalQtyByCart } from "../../Utils"
 
 let menuLeft = [
     {
@@ -64,7 +65,7 @@ let menuRight = [
 const Navbar = () => {
     const context = useContext(ShoppingCartContext)
     const activeStyle = 'underline underline-offset-4'
-    const totalQuantity = context.cartProducts.reduce((acc, item) => acc + item.quantity, 0)
+    const totalQuantity = totalQtyByCart()
     
     return (
         <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-5 text-sm font-light bg-white">

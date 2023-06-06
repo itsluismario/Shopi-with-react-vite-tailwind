@@ -28,13 +28,6 @@ export const ShoppingCartProvider = ( {children}: any ) => {
     // Shopping Cart • Add products to cart 
     const [ cartProducts, setCartProducts ] = useState([])
 
-    // Shopping Cart •  Upate/Remove number of item
-    const updateCart = () => {
-        let quantityItemsInCart = 0 
-        const newItemsInCart = cartProducts.map(product => quantityItemsInCart = quantityItemsInCart + product.quantity)
-        setCount(newItemsInCart)
-    } 
-
     // Shopping Cart • Order
     const [ order, setOrder ] = useState([])
 
@@ -54,7 +47,6 @@ export const ShoppingCartProvider = ( {children}: any ) => {
             setIsCheckoutSideMenuOpen,
             openCheckoutSideMenu,
             closeCheckoutSideMenu,
-            updateCart,
             order,
             setOrder
             }}>

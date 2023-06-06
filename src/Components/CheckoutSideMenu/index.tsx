@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import OrderCard from "../OrderCard";
-import { totalPrice } from "../../utils";
+import { totalPrice } from "../../Utils";
 import { v4 as uuidv4 } from 'uuid';
 
 const CheckoutSideMenu = () => {
@@ -15,7 +15,7 @@ const CheckoutSideMenu = () => {
     }    
 
     const handleCheckout = () => {
-        const { cartProducts, setOrder, setCartProducts, count, order } = context
+        const { cartProducts, setOrder, setCartProducts, count, setCount, order } = context
         const orderToAdd = {
             date: "01.02.23",
             products: cartProducts,
@@ -24,6 +24,7 @@ const CheckoutSideMenu = () => {
         }
         setOrder([...order, orderToAdd])
         setCartProducts([])
+        setCount(0)
         context.closeCheckoutSideMenu()
     }
 

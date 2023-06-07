@@ -7,8 +7,8 @@
   Proyecto con React.js, Vite.js y TailwindCSS
 </h1>
 <p align="center">
-  <a href="https://react-tailwind-itsluismario.vercel.app/" target="_blank">
-    https://react-tailwind-itsluismario.vercel.app/
+  <a href="https://shopi-react-vite.netlify.app" target="_blank">
+    https://shopi-react-vite.netlify.app
   </a>
 </p>
 
@@ -65,7 +65,7 @@
     npm run dev
     ```
 
-    El sitio estará disponible en https://react-tailwind-itsluismario.vercel.app/.
+    El sitio estará disponible en https://shopi-react-vite.netlify.app.
 
 
 ### 🚀 Logros

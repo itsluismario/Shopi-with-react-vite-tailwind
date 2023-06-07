@@ -10,6 +10,7 @@ const ProductDetail = () => {
             className={`${ context.isProductDetailOpen ? 'flex' : 'hidden' } w-[360px] h-[calc(100vh-80px)] 
             flex-col fixed right-0 border border-black rounded-lg bg-white`
             }>
+            
             <div className="flex justify-between items-center p-6">
                 <h2 className="font-medium text-xl">Detail</h2>
                     <XMarkIcon 
@@ -17,6 +18,7 @@ const ProductDetail = () => {
                         className="h-6 w-6 text-black cursor-pointer">    
                     </XMarkIcon>
             </div>
+            <div className="overflow-y-scroll">
             <figure className="px-6">
                 <img
                     className="w-full h-full rounded-lg" 
@@ -28,6 +30,7 @@ const ProductDetail = () => {
                 <span className="font-medium text-md">{context.productToShow.title}</span>
                 <span className="font-light text-sm">{context.productToShow.description}</span>
             </p>
+            </div>
         </aside>
     )
 }

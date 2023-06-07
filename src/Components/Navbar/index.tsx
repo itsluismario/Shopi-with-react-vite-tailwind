@@ -1,6 +1,4 @@
-import { NavLink } from "react-router-dom";
-import { useContext } from "react"
-import { ShoppingCartContext } from "../../Context"
+import { NavLink } from "react-router-dom"
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 import { totalQtyByCart } from "../../Utils"
 
@@ -11,23 +9,18 @@ let menuLeft = [
         className: ''
     },
     {
-        to: '/clothes',
-        text: 'clothes',
+        to: '/shoes',
+        text: 'shoes',
         className: ''
     },
     {
-        to: '/electronics',
-        text: 'electronics',
+        to: '/furniture',
+        text: 'furniture',
         className: ''
     },
     {
-        to: '/furnitures',
-        text: 'furnitures',
-        className: ''
-    },
-    {
-        to: '/toys',
-        text: 'toys',
+        to: '/prince',
+        text: 'prince',
         className: ''
     },
     {

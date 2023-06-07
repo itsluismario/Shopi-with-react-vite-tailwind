@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import Layout from "../../Components/Layout"
 import Card from "../../Components/Card"
 import ProductDetail from "../../Components/ProductDetail"
@@ -6,7 +6,47 @@ import { ShoppingCartContext } from "../../Context"
 function Home() {
   const context = useContext(ShoppingCartContext)
 
-  const { searchByTitle, setSearchByTitle } = context
+  const { searchByTitle, setSearchByTitle, filteredItems, items, filteredItemsByCategory, setFilteredItemsByCategory } = context
+  
+  const renderView = () => {
+
+    const pathSplitted = window.location.pathname.split('/');
+    let category = pathSplitted[pathSplitted.length - 1];
+
+    const FilteredItemsByCategory = (items, category ) => {
+        if (category.length === 0) {
+          return items?.map(item => item)        
+        } else {
+          return items?.filter((item) => item.category.name.toLowerCase().replace(/\s/g, '') === category)
+        }
+    }
+
+    useEffect(() => {
+      setFilteredItemsByCategory(FilteredItemsByCategory(items, category))
+    }, [category])
+
+    if (searchByTitle?.length > 0) {
+      if (filteredItems?.length > 0) {
+            return (
+              filteredItems?.map(item => (
+                <Card key={item.id} data={item} />
+              ))
+            )
+          } else {
+            return (
+              <div className='flex items-center justify-center mt-10 w-screen'>
+                <p className="text-center">We could not find it</p>
+              </div>
+            )
+          }
+    } else {
+        return (
+          filteredItemsByCategory?.map(item => (
+            <Card key={item.id} data={item} />
+          ))
+        )
+      }
+  }
   
   return (
       <Layout>
@@ -21,9 +61,7 @@ function Home() {
             />
           <div className="grid gap-4 grid-cols-4 max-w-screen-lg">
             {
-              context.items?.map(item => (
-                <Card key={item.id} data={item} />
-              ))
+            renderView()
             } 
           </div>
           <ProductDetail/>

@@ -46,6 +46,7 @@ const Card = ( {data} ) => {
             <p className="flex justify-between items-center">
                 <span className="text-sm font-light">{data.title}</span>
                 <span className="text-base font-medium">${data.price}</span>
+                
             </p>
             <p 
                 onClick={(event) => addProductsToCart(event, data)} 

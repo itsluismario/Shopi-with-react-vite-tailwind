@@ -50,14 +50,13 @@ const Card = ( {data}:any ) => {
                 <span className="text-base font-medium">${data.price}</span>
                 
             </p>
-            <p
+            <button
             onClick={(event) => addProductsToCart(event, data)}
             className="addProduct flex text-base"
             >
             <span className="addProduct hover:underline sunderline-offset-2">Add product</span>
             <span><ChevronRightIcon className="h-6 w-4 text-blue-500" /></span>
-            </p>
-
+            </button>
         </div>
     )
 }

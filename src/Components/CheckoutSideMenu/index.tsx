@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import OrderCard from "../OrderCard";
-import { totalPrice } from "../../Utils";
+import { totalPrice } from "../../utils";
 import { v4 as uuidv4 } from 'uuid';
 
 const CheckoutSideMenu = () => {

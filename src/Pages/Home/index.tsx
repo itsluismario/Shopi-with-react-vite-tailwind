@@ -6,7 +6,7 @@ import { ShoppingCartContext } from "../../Context"
 function Home() {
   const context = useContext(ShoppingCartContext)
 
-  const { searchByTitle, setSearchByTitle, filteredItems, items, filteredItemsByCategory, setFilteredItemsByCategory } = context
+  const { searchByTitle, setSearchByTitle, filteredItems, items, searchItemsByCategory, setSearchItemsByCategory } = context
   
   const renderView = () => {
 
@@ -22,8 +22,8 @@ function Home() {
     }
 
     useEffect(() => {
-      setFilteredItemsByCategory(FilteredItemsByCategory(items, category))
-    }, [category])
+      setSearchItemsByCategory(FilteredItemsByCategory(items, category))
+    }, [items, category])
 
     if (searchByTitle?.length > 0) {
       if (filteredItems?.length > 0) {
@@ -41,12 +41,13 @@ function Home() {
           }
     } else {
         return (
-          filteredItemsByCategory?.map(item => (
+          searchItemsByCategory?.map(item => (
             <Card key={item.id} data={item} />
           ))
         )
       }
   }
+  
   
   return (
       <Layout>

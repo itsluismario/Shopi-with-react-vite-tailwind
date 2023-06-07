@@ -32,7 +32,7 @@ let menuLeft = [
 
 let menuRight = [
     {
-        to: '/email',
+        to: '/',
         text: 'itsluismario@gmail.com',
         className: 'text-black/60'
     },
@@ -41,17 +41,6 @@ let menuRight = [
         text: 'My orders',
         className: ''
     },
-    {
-        to: '/my-account',
-        text: 'My occount',
-        className: ''
-    },
-    {
-        to: '/sign-in',
-        text: 'Sign in',
-        className: ''
-    },
-
 ]
 
 

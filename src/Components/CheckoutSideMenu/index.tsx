@@ -15,7 +15,7 @@ const CheckoutSideMenu = () => {
     }    
 
     const handleCheckout = () => {
-        const { cartProducts, setOrder, setCartProducts, count, setCount, order, closeCheckoutSideMenu } = context
+        const { cartProducts, setOrder, setCartProducts, count, setCount, order, closeCheckoutSideMenu, setSearchByTitle } = context
         const orderToAdd = {
             date: "01.02.23",
             products: cartProducts,
@@ -26,6 +26,7 @@ const CheckoutSideMenu = () => {
         setCartProducts([])
         setCount(0)
         closeCheckoutSideMenu()
+        setSearchByTitle(null)
     }
 
 

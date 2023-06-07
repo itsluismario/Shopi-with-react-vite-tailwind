@@ -1,4 +1,4 @@
-# shopi-react-vite
+# Curso de React.js con Vite.js y TailwindCSS
 
 <p align="center">
   <a href="https://platzi.com/cursos/react-vite-tailwindcss/" target="_blank">

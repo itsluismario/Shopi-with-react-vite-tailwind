@@ -1,5 +1,3 @@
-# Curso de React.js con Vite.js y TailwindCSS
-
 <p align="center">
   <a href="https://platzi.com/cursos/react-vite-tailwindcss/" target="_blank">
     <img alt="Curso de React.js con Vite.js y TailwindCSS.js" src="https://static.platzi.com/cdn-cgi/image/width=1024,quality=50,format=auto/media/achievements/badge-curso-react-vite-8cd23e27-eebb-4dcc-aeb7-cc83924080eb.png" width="60" />

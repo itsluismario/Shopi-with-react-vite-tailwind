@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import React, { useContext, useEffect } from "react"
 import Layout from "../../Components/Layout"
 import Card from "../../Components/Card"
 import ProductDetail from "../../Components/ProductDetail"

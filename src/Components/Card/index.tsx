@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import React, { useContext } from "react"
 import { ShoppingCartContext } from "../../Context"
 import { ChevronRightIcon } from '@heroicons/react/24/solid'
 import './styles.css'
@@ -14,25 +14,26 @@ const Card = ( {data}:any ) => {
         closeCheckoutSideMenu()
     } 
 
-    //Agrega un producto al carrito, y si ya existe aumenta la cantidad y suma los productos
-    const addProductsToCart = (event:any, productData:any) => {
-        event.stopPropagation()
-        context.setCount(context.count + 1)
-        
-        const productIndex = context.cartProducts.findIndex((product:any) => product.id === productData.id)
-        
-        let newCart = []
+    // Agrega un producto al carrito, y si ya existe aumenta la cantidad y suma los precios
+    const addProductsToCart = (event: React.MouseEvent<HTMLButtonElement>, productData: any) => {
+        event.stopPropagation();
+        context.setCount(context.count + 1);
+    
+        const productIndex = context.cartProducts.findIndex((product: any) => product.id === productData.id);
+    
+        let newCart: any[] = [];
         if (productIndex >= 0) {
-        newCart = [...context.cartProducts]
-        newCart[productIndex].quantity++
-        newCart[productIndex].price = productData.price + newCart[productIndex].price
+        newCart = [...context.cartProducts];
+        newCart[productIndex].quantity++;
+        newCart[productIndex].price = productData.price + newCart[productIndex].price;
         } else {
-        newCart = [...context.cartProducts, { ...productData, quantity: 1 }]
+        newCart = [...context.cartProducts, { ...productData, quantity: 1 }];
         }
-        context.setCartProducts(newCart)
-        context.closeProductDetail()
-        context.openCheckoutSideMenu()
-    }
+        context.setCartProducts(newCart);
+        context.closeProductDetail();
+        context.openCheckoutSideMenu();
+    };
+  
 
     return (
         <div 
@@ -49,12 +50,14 @@ const Card = ( {data}:any ) => {
                 <span className="text-base font-medium">${data.price}</span>
                 
             </p>
-            <p 
-                onClick={(event) => addProductsToCart(event, data)} 
-                className="addProduct flex text-base">
-                    <span className="addProduct hover:underline sunderline-offset-2" >Add product</span>
-                    <span><ChevronRightIcon className="h-6 w-4 text-blue-500" /></span>
+            <p
+            onClick={(event) => addProductsToCart(event, data)}
+            className="addProduct flex text-base"
+            >
+            <span className="addProduct hover:underline sunderline-offset-2">Add product</span>
+            <span><ChevronRightIcon className="h-6 w-4 text-blue-500" /></span>
             </p>
+
         </div>
     )
 }

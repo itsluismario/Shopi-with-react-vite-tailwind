@@ -5,8 +5,8 @@
  * @returns {number} Total Price
  */
 
-export const totalPrice = (products) => {
-    const totalCost = products.reduce((acc, item) => acc + item.price * item.quantity, 0)
+export const totalPrice = (products : any ) => {
+    const totalCost = products.reduce((acc:any, item:any) => acc + item.price * item.quantity, 0)
     return (
         totalCost
     )
@@ -17,7 +17,7 @@ import { ShoppingCartContext } from "../Context";
 
 // Shopping Cart •  Give the total products by cart
 export const totalQtyByCart = () => {
-    const context = useContext(ShoppingCartContext)
-    const totalQuantity = context.cartProducts.reduce((acc, item) => acc + item.quantity, 0)
+    const context:any = useContext(ShoppingCartContext)
+    const totalQuantity = context.cartProducts.reduce((acc:any, item:any) => acc + item.quantity, 0)
     return totalQuantity    
 } 

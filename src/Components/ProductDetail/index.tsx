@@ -3,7 +3,7 @@ import { ShoppingCartContext } from "../../Context"
 import { XMarkIcon } from "@heroicons/react/24/solid"
 
 const ProductDetail = () => {
-    const context = useContext(ShoppingCartContext)
+    const context:any = useContext(ShoppingCartContext)
 
     return (
         <aside 

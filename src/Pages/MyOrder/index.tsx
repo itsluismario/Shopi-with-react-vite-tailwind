@@ -6,7 +6,7 @@ import OrderCard from "../../Components/OrderCard"
 import { ChevronLeftIcon } from "@heroicons/react/24/solid"
 
 function MyOrder() {
-  const context = useContext(ShoppingCartContext)
+  const context:any = useContext(ShoppingCartContext)
 
   const pathSplitted = window.location.pathname.split('/');
   let param = pathSplitted[pathSplitted.length - 1];
@@ -31,7 +31,7 @@ function MyOrder() {
        
         <div>
           {
-          result.products.map(product => (
+          result.products.map((product:any) => (
             <OrderCard 
               key={product.id}
               id={product.id}

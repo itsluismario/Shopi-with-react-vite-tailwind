@@ -4,7 +4,7 @@ import Card from "../../Components/Card"
 import ProductDetail from "../../Components/ProductDetail"
 import { ShoppingCartContext } from "../../Context"
 function Home() {
-  const context = useContext(ShoppingCartContext)
+  const context:any = useContext(ShoppingCartContext)
 
   const { searchByTitle, setSearchByTitle, filteredItems, items, searchItemsByCategory, setSearchItemsByCategory } = context
   
@@ -13,11 +13,11 @@ function Home() {
     const pathSplitted = window.location.pathname.split('/');
     let category = pathSplitted[pathSplitted.length - 1];
 
-    const FilteredItemsByCategory = (items, category ) => {
+    const FilteredItemsByCategory = (items:any, category:any ) => {
         if (category.length === 0) {
-          return items?.map(item => item)        
+          return items?.map((item:any) => item)        
         } else {
-          return items?.filter((item) => item.category.name.toLowerCase().replace(/\s/g, '') === category)
+          return items?.filter((item:any) => item.category.name.toLowerCase().replace(/\s/g, '') === category)
         }
     }
 
@@ -28,7 +28,7 @@ function Home() {
     if (searchByTitle?.length > 0) {
       if (filteredItems?.length > 0) {
             return (
-              filteredItems?.map(item => (
+              filteredItems?.map((item:any) => (
                 <Card key={item.id} data={item} />
               ))
             )
@@ -41,7 +41,7 @@ function Home() {
           }
     } else {
         return (
-          searchItemsByCategory?.map(item => (
+          searchItemsByCategory?.map((item:any) => (
             <Card key={item.id} data={item} />
           ))
         )

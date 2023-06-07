@@ -1,24 +1,25 @@
 import { useContext } from "react"
 import { ShoppingCartContext } from "../../Context"
-import { PlusIcon, CheckIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
+import { ChevronRightIcon } from '@heroicons/react/24/solid'
 import './styles.css'
 
-const Card = ( {data} ) => {
+const Card = ( {data}:any ) => {
     
-    const context = useContext(ShoppingCartContext)
+    const context:any = useContext(ShoppingCartContext)
+    const { openProductDetail, setproductToShow, closeCheckoutSideMenu } = context
 
-    const showProduct = (productDetail) => {
-        context.openProductDetail()
-        context.setproductToShow(productDetail)
-        context.closeCheckoutSideMenu()
+    const showProduct = (productDetail:any) => {
+        openProductDetail()
+        setproductToShow(productDetail)
+        closeCheckoutSideMenu()
     } 
 
     //Agrega un producto al carrito, y si ya existe aumenta la cantidad y suma los productos
-    const addProductsToCart = (event, productData) => {
+    const addProductsToCart = (event:any, productData:any) => {
         event.stopPropagation()
         context.setCount(context.count + 1)
         
-        const productIndex = context.cartProducts.findIndex(product => product.id === productData.id)
+        const productIndex = context.cartProducts.findIndex((product:any) => product.id === productData.id)
         
         let newCart = []
         if (productIndex >= 0) {

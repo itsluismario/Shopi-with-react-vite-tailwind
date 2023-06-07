@@ -1,63 +1,85 @@
 import { createContext, useState, useEffect } from "react";
 import { apiUrl } from "../API"
 
-export const ShoppingCartContext = createContext()
+type Product = {
+  title: string;
+  price: string;
+  description: string;
+  images: string[];
+};
 
-export const ShoppingCartProvider = ( {children}: any ) => {
-    
-    // Shopping Cart • Increment quantity  
-    const [ count, setCount ] = useState(0)
+type ShoppingCartContextType = {
+  count: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+  isProductDetailOpen: boolean;
+  openProductDetail: () => void;
+  closeProductDetail: () => void;
+  isCheckoutSideMenuOpen: boolean;
+  setIsCheckoutSideMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+  openCheckoutSideMenu: () => void;
+  closeCheckoutSideMenu: () => void;
+  productToShow: Product;
+  setproductToShow: React.Dispatch<React.SetStateAction<Product>>;
+  cartProducts: Product[];
+  setCartProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  order: any[]; // Define the correct type for the 'order' variable
+  setOrder: React.Dispatch<React.SetStateAction<any[]>>;
+  items: any[] | null; // Define the correct type for the 'items' variable
+  setItems: React.Dispatch<React.SetStateAction<any[] | null>>;
+  searchByTitle: string | null;
+  setSearchByTitle: React.Dispatch<React.SetStateAction<string | null>>;
+  filteredItems: any[] | null; // Define the correct type for the 'filteredItems' variable
+  setFilteredItems: React.Dispatch<React.SetStateAction<any[] | null>>;
+  searchItemsByCategory: any; // Define the correct type for the 'searchItemsByCategory' variable
+  setSearchItemsByCategory: React.Dispatch<React.SetStateAction<any>>;
+};
 
-    // Product Detail • Open/Close 
-    const [ isProductDetailOpen, setIsProductDetailOpen ] = useState(false)
-    const openProductDetail = () => setIsProductDetailOpen(true)
-    const closeProductDetail = () => setIsProductDetailOpen(false)
+export const ShoppingCartContext = createContext<ShoppingCartContextType>(
+  {} as ShoppingCartContextType
+);
 
-    // Checout Side Menu • Open/Close 
-    const [ isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen ] = useState(false)
-    const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
-    const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
+export const ShoppingCartProvider = ({ children }: any) => {
+  const [count, setCount] = useState(0);
+  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
+  const openProductDetail = () => setIsProductDetailOpen(true);
+  const closeProductDetail = () => setIsProductDetailOpen(false);
 
-    // Product Detail • Show product
-    const [ productToShow, setproductToShow] = useState({
-                                                title: "",
-                                                price: "",
-                                                description: "",
-                                                images: [],
-                                            })
-    
-    // Shopping Cart • Add products to cart 
-    const [ cartProducts, setCartProducts ] = useState([])
+  const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
+  const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
+  const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
 
-    // Shopping Cart • Order
-    const [ order, setOrder ] = useState([])
+  const [productToShow, setproductToShow] = useState<Product>({
+    title: "",
+    price: "",
+    description: "",
+    images: [],
+  });
 
-    // Get products
-    const [ items, setItems ] = useState(null)
-    const [ filteredItems, setFilteredItems ] = useState(null)
-        
-    // Get products by title
-    const [ searchByTitle, setSearchByTitle ] = useState(null)
+  const [cartProducts, setCartProducts] = useState<Product[]>([]);
+  const [order, setOrder] = useState<any[]>([]);
+  const [items, setItems] = useState<any[] | null>(null);
+  const [filteredItems, setFilteredItems] = useState<any[] | null>(null);
+  const [searchByTitle, setSearchByTitle] = useState<string | null>(null);
+  const [searchItemsByCategory, setSearchItemsByCategory] = useState<any>(null);
 
-    // Get products by category
-    const [ searchItemsByCategory, setSearchItemsByCategory ] = useState(null)
+  useEffect(() => {
+    fetch(`${apiUrl}/products`)
+      .then((response) => response.json())
+      .then((data) => setItems(data));
+  }, []);
 
-    // Get products from the API
-    useEffect(() => {
-        fetch(`${apiUrl}/products`)
-        .then(response => response.json())
-        .then(data => setItems(data)
-        )
-    }, [])
+  const filteredItemsByTitle = (
+    searchItemsByCategory: any,
+    searchByTitle: any
+  ) => {
+    return searchItemsByCategory?.filter((item: any) =>
+      item.title.toLowerCase().includes(searchByTitle.toLowerCase())
+    );
+  };
 
-    // Search products 
-    const filteredItemsByTitle = (searchItemsByCategory, searchByTitle) => {
-            return searchItemsByCategory?.filter((item) => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
-        }
-
-    useEffect(() => {
-        if (searchByTitle) setFilteredItems(filteredItemsByTitle(items, searchByTitle))
-    }, [ items, searchByTitle ])
+  useEffect(() => {
+    if (searchByTitle) setFilteredItems(filteredItemsByTitle(items, searchByTitle));
+  }, [items, searchByTitle]);
 
 
     return (

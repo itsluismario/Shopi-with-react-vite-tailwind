@@ -7,10 +7,10 @@ import { totalPrice } from "../../Utils";
 import { v4 as uuidv4 } from 'uuid';
 
 const CheckoutSideMenu = () => {
-    const context = useContext(ShoppingCartContext)
+    const context:any = useContext(ShoppingCartContext)
 
-    const handleDelete = (id) => {
-        const filteredProducts = context.cartProducts.filter(product => product.id != id)
+    const handleDelete = (id:any) => {
+        const filteredProducts = context.cartProducts.filter((product:any) => product.id != id)
         context.setCartProducts(filteredProducts)
     }    
 
@@ -45,7 +45,7 @@ const CheckoutSideMenu = () => {
             </div>
             <div className="px-6 overflow-y-scroll flex-1 ml-0">
                 {
-                context.cartProducts.map((product) => (
+                context.cartProducts.map((product:any) => (
                     <OrderCard 
                         key={uuidv4()} 
                         id={product.id}

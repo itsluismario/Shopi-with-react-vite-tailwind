@@ -1,6 +1,6 @@
 import { ChevronRightIcon } from '@heroicons/react/24/solid'
 
-const OrdersCard = props => {
+const OrdersCard = (props:any) => {
   const { totalPrice, totalProducts } = props
 
   return (
